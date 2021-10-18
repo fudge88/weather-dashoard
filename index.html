@@ -31,82 +31,83 @@
           <div class="tile is-vertical is-8">
             <div class="tile">
               <div class="tile is-parent is-vertical">
+
                   <!-- current dat and time -->
                 <article class="tile is-child notification dark-overlay">
                   <h1 class="title">Current Day</h1>
                   <p class="subtitle">Current time</p>
                 </article>
+
                 <!-- current city and weather info -->
-                <article class="tile is-child notification dark-overlay ">
-                  <h1 class="title">Birmingham</h1>
-                    <div class="current-weather-container">
-                    <div class="temp-display">
-                  <p>15*C</p>
-                  </div>
-                  <div class="current-weather-desc">
-                      <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
-                      <p>Cloudy & Rain</p>
+                <article class="tile is-child notification dark-overlay">
+                    <h1 class="title-city">Birmingham</h1>
+                    <div class="columns">
+                        <div class="column">
+                        <p class="temp-display">15*C</p>
+                        </div>
+                        <div class="column">
+                            <div class="pt-3"><i class="fas fa-tint fa-lg"></i> Humidity 20%</div>
+                            <div class="pt-3"><i class="fas fa-wind fa-lg "></i> Wind speed</div>
+                            <div class="pt-3"><i class="fas fa-sun fa-lg"></i> UV levels</div>
+                        </div>
                     </div>
-                      </div>
                 </article>
               </div>
+
+            <!-- current weather icon -->
               <div class="tile is-parent">
                 <article class="tile is-child notification dark-overlay">
-                  <p class="title">Middle tile</p>
+                  <h2 class="title">Current Conditions</h2>
                   <p class="subtitle">With an image</p>
-                  <figure class="image is-4by3">
-                    <img
-                      src="https://bulma.io/images/placeholders/640x480.png"
-                    />
-                  </figure>
+                    <i class="fas fa-cloud-sun fa-2x"></i>
                 </article>
               </div>
             </div>
+
+            <!-- weekly forecast for searched area -->
             <div class="tile is-parent">
               <article class="tile is-child notification dark-overlay">
-                <h2 class="title">5 Day Forecast</h2>
-                <div class="content column">
-                  <!-- Content -->
+                <div class="content ">
                   <div class="columns is-mobile">
+                    <!-- day card -->
                     <div class="column">
-                      
-                      <div class="current-weather-desc">
+                      <div class="future-weather-card">
                         <p class="">Mon</p>
                         <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
                         <p>Cloudy & Rain</p>
                         <p>10*C</p>
                       </div>
                     </div>
+                    <!-- day card -->
                     <div class="column">
-                      
-                      <div class="current-weather-desc">
+                      <div class="future-weather-card">
                         <p class="">Tue</p>
                         <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
                         <p>Cloudy & Rain</p>
                         <p>10*C</p>
                       </div>
                     </div>
+                    <!-- day card -->
                     <div class="column">
-                     
-                      <div class="current-weather-desc">
+                      <div class="future-weather-card">
                         <p class="">Wed</p>
                         <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
                         <p>Cloudy & Rain</p>
                         <p>10*C</p>
                       </div>
                     </div>
+                    <!-- day card -->
                     <div class="column">
-                    
-                      <div class="current-weather-desc">
+                      <div class="future-weather-card">
                         <p class="">Thur</p>
                         <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
                         <p>Cloudy & Rain</p>
                         <p>10*C</p>
                       </div>
                     </div>
+                    <!-- day card -->
                     <div class="column">
-                   
-                      <div class="current-weather-desc">
+                      <div class="future-weather-card">
                         <p class=" ">Fri</p>
                         <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
                         <p>Cloudy & Rain</p>
@@ -119,10 +120,11 @@
             </div>
           </div>
 
-          <!-- Tall search container -->
+          <!-- Tall container -->
           <div class="tile is-parent tall-container">
             <article class="tile is-child notification dark-overlay">
               <div class="content">
+                  <!-- search container -->
                 <div class="search_container">
                   <input
                     type="text"
@@ -131,10 +133,16 @@
                   <button class="search-btn"><i class="fas fa-search fa-lg"></i></button>
                 </div>
               </div>
-                <p class="subtitle">Historic Searches</p>
-                <div class="content">
+                <div class="searched-cities">
                   <!-- Content -->
+                  <div>London</div>
+                  <div>20*C</div>
                 </div>
+                <div class="searched-cities">
+                    <!-- Content -->
+                    <div>Glasgow</div>
+                    <div>10*C</div>
+                  </div>
               </div>
             </article>
           </div>

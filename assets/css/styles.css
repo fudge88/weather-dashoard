@@ -38,25 +38,28 @@ h3 {
 /* tiles styling */
 .dark-overlay {
   background-color: rgba(0, 0, 0, 0.459);
-  padding: 10px;
+  padding: 1rem;
   border-radius: 25px;
 }
 
 .tall-container {
-  height: 90vh;
+  /* height: 90vh; */
 }
 
 /* search bar */
 .search_container {
   display: flex;
+  padding-top: 2rem;
 }
 
 input {
+    color: #ffffff;
     outline: 0;
     border-width: 0 0 2px;
     border-color: rgb(0, 0, 0);
     background-color: transparent;
     margin: auto;
+    margin-left: 3rem;
     display: block;
     width: 80%;
     padding: 12px 24px;
@@ -71,18 +74,34 @@ input {
   .search-btn {
       background-color: transparent;
       border-style: none;
-      padding-right: 1.5rem;
+      padding: 1.2rem;
   }
 
-.current-weather-container{
+  .search-btn:hover {
+      background-color: rgba(0, 0, 0, 0.459);
+      color: #ffffff;
+      border-radius: 25px;
+  }
+
+.searched-cities{
     display: flex;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+}
+
+
+/* current searched city section */
+.title-city{
+    font-size: 4.5rem;
 }
 
   .temp-display{
       font-size: 5rem;
   }
-  .current-weather-desc{
+
+  /* 5 day forecast section */
+  .future-weather-card{
       text-align: center;
-      padding: 2rem;
       font-size: 1rem;
   }
