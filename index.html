@@ -12,10 +12,13 @@
     <!-- google fonts CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@200&display=swap"
       rel="stylesheet"
     />
+    <!-- font awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <!-- internal CSS -->
     <link rel="stylesheet" href="./assets/css/styles.css" />
     <title>Weather Dashboard</title>
@@ -28,13 +31,23 @@
           <div class="tile is-vertical is-8">
             <div class="tile">
               <div class="tile is-parent is-vertical">
+                  <!-- current dat and time -->
                 <article class="tile is-child notification dark-overlay">
-                  <p class="title">Current Day</p>
+                  <h1 class="title">Current Day</h1>
                   <p class="subtitle">Current time</p>
                 </article>
-                <article class="tile is-child notification dark-overlay">
-                  <p class="title">City Name</p>
-                  <p class="subtitle">current weather and temperature</p>
+                <!-- current city and weather info -->
+                <article class="tile is-child notification dark-overlay ">
+                  <h1 class="title">Birmingham</h1>
+                    <div class="current-weather-container">
+                    <div class="temp-display">
+                  <p>15*C</p>
+                  </div>
+                  <div class="current-weather-desc">
+                      <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
+                      <p>Cloudy & Rain</p>
+                    </div>
+                      </div>
                 </article>
               </div>
               <div class="tile is-parent">
@@ -51,24 +64,54 @@
             </div>
             <div class="tile is-parent">
               <article class="tile is-child notification dark-overlay">
-                <p class="title">Weather cards for the next 5 days</p>
+                <h2 class="title">5 Day Forecast</h2>
                 <div class="content column">
                   <!-- Content -->
                   <div class="columns is-mobile">
                     <div class="column">
-                      <p class="bd-notification is-danger">Auto</p>
+                      
+                      <div class="current-weather-desc">
+                        <p class="">Mon</p>
+                        <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
+                        <p>Cloudy & Rain</p>
+                        <p>10*C</p>
+                      </div>
                     </div>
                     <div class="column">
-                      <p class="bd-notification is-danger">Auto</p>
+                      
+                      <div class="current-weather-desc">
+                        <p class="">Tue</p>
+                        <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
+                        <p>Cloudy & Rain</p>
+                        <p>10*C</p>
+                      </div>
                     </div>
                     <div class="column">
-                      <p class="bd-notification is-danger">Auto</p>
+                     
+                      <div class="current-weather-desc">
+                        <p class="">Wed</p>
+                        <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
+                        <p>Cloudy & Rain</p>
+                        <p>10*C</p>
+                      </div>
                     </div>
                     <div class="column">
-                      <p class="bd-notification is-danger">Auto</p>
+                    
+                      <div class="current-weather-desc">
+                        <p class="">Thur</p>
+                        <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
+                        <p>Cloudy & Rain</p>
+                        <p>10*C</p>
+                      </div>
                     </div>
                     <div class="column">
-                      <p class="bd-notification is-danger">Auto</p>
+                   
+                      <div class="current-weather-desc">
+                        <p class=" ">Fri</p>
+                        <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
+                        <p>Cloudy & Rain</p>
+                        <p>10*C</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -80,7 +123,14 @@
           <div class="tile is-parent tall-container">
             <article class="tile is-child notification dark-overlay">
               <div class="content">
-                <p class="title">Search Container</p>
+                <div class="search_container">
+                  <input
+                    type="text"
+                    placeholder="Search weather by city"
+                  />
+                  <button class="search-btn"><i class="fas fa-search fa-lg"></i></button>
+                </div>
+              </div>
                 <p class="subtitle">Historic Searches</p>
                 <div class="content">
                   <!-- Content -->

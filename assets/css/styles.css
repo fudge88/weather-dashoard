@@ -7,15 +7,16 @@ body {
   margin: 0;
   padding: 0;
   color: #ffffff;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Montserrat', sans-serif;f;
 }
 
 h1,
 h2,
 h3 {
-  font-family: "Oswald", sans-serif;
+    font-family: 'Raleway', sans-serif;    
 }
 
+/* background image */
 .background-img {
   background-image: url(../images/skyline.jpg);
   height: 100vh;
@@ -25,6 +26,7 @@ h3 {
   background-repeat: no-repeat;
 }
 
+/* wrapper to hold tiles in place */
 .wrapper {
   width: 95%;
   height: 95%;
@@ -33,6 +35,7 @@ h3 {
   left: 2%;
 }
 
+/* tiles styling */
 .dark-overlay {
   background-color: rgba(0, 0, 0, 0.459);
   padding: 10px;
@@ -42,3 +45,44 @@ h3 {
 .tall-container {
   height: 90vh;
 }
+
+/* search bar */
+.search_container {
+  display: flex;
+}
+
+input {
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: rgb(0, 0, 0);
+    background-color: transparent;
+    margin: auto;
+    display: block;
+    width: 80%;
+    padding: 12px 24px;
+    font-size: 1.5rem;
+    line-height: 18px;
+  }
+
+  input:focus {
+    border-color: #ffffff;
+  }
+
+  .search-btn {
+      background-color: transparent;
+      border-style: none;
+      padding-right: 1.5rem;
+  }
+
+.current-weather-container{
+    display: flex;
+}
+
+  .temp-display{
+      font-size: 5rem;
+  }
+  .current-weather-desc{
+      text-align: center;
+      padding: 2rem;
+      font-size: 1rem;
+  }
