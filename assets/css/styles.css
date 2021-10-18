@@ -6,6 +6,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  color: #ffffff;
   font-family: "Roboto", sans-serif;
 }
 
@@ -31,6 +32,13 @@ h3 {
   top: 6%;
   left: 2%;
 }
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.459);
+  padding: 10px;
+  border-radius: 25px;
+}
+
 .tall-container {
   height: 90vh;
 }
