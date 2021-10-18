@@ -29,9 +29,8 @@ h3 {
 /* wrapper to hold tiles in place */
 .wrapper {
   width: 95%;
-  height: 95%;
   position: relative;
-  top: 6%;
+  top: 15%;
   left: 2%;
 }
 
