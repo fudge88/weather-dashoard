@@ -44,11 +44,13 @@
                     <div class="columns">
                         <div class="column">
                         <p class="temp-display">15*C</p>
+                        <p class="pb-3 subtitle">Feels like 12*C</p>
                         </div>
                         <div class="column">
-                            <div class="pt-3"><i class="fas fa-tint fa-lg"></i> Humidity 20%</div>
-                            <div class="pt-3"><i class="fas fa-wind fa-lg "></i> Wind speed</div>
-                            <div class="pt-3"><i class="fas fa-sun fa-lg"></i> UV levels</div>
+                            <div class="current-weather-icon-container">
+                                <i class="current-icon fas fa-cloud-sun fa-2x"></i>
+                                <p class="pt-2 subtitle">Partly Cloudy</p>
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -57,9 +59,21 @@
             <!-- current weather icon -->
               <div class="tile is-parent">
                 <article class="tile is-child notification dark-overlay">
-                  <h2 class="title">Current Conditions</h2>
-                  <p class="subtitle">With an image</p>
-                    <i class="fas fa-cloud-sun fa-2x"></i>
+                  <h2 class="pt-4 title">Daily Stats</h2>
+                  <div class="column">
+                    <div class="searched-cities">
+                        <div><i class="fas fa-tint fa-lg"></i> Humidity</div>
+                        <div>20*C</div>
+                    </div>
+                    <div class="searched-cities">
+                        <div><i class="fas fa-wind fa-lg "></i> Wind speed</div>
+                        <div>10*C</div>
+                    </div>
+                    <div class="searched-cities">
+                        <div><i class="fas fa-sun fa-lg"></i> UV levels</div>
+                        <div>10*C</div>
+                    </div>
+                    </div>
                 </article>
               </div>
             </div>
@@ -128,18 +142,17 @@
                 <div class="search_container">
                   <input
                     type="text"
-                    placeholder="Search weather by city"
+                    placeholder="Search city here"
                   />
                   <button class="search-btn"><i class="fas fa-search fa-lg"></i></button>
                 </div>
               </div>
+               <!-- historic searches -->
                 <div class="searched-cities">
-                  <!-- Content -->
                   <div>London</div>
                   <div>20*C</div>
                 </div>
                 <div class="searched-cities">
-                    <!-- Content -->
                     <div>Glasgow</div>
                     <div>10*C</div>
                   </div>

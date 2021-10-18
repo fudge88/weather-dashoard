@@ -46,6 +46,7 @@ h3 {
   /* height: 90vh; */
 }
 
+/* tall container styling */
 /* search bar */
 .search_container {
   display: flex;
@@ -77,6 +78,7 @@ input {
       padding: 1.2rem;
   }
 
+  .searched-cities:hover,
   .search-btn:hover {
       background-color: rgba(0, 0, 0, 0.459);
       color: #ffffff;
@@ -91,17 +93,27 @@ input {
 }
 
 
-/* current searched city section */
+/* current city section */
 .title-city{
     font-size: 4.5rem;
 }
 
   .temp-display{
-      font-size: 5rem;
+      font-size: 6rem;
   }
 
   /* 5 day forecast section */
   .future-weather-card{
       text-align: center;
       font-size: 1rem;
+  }
+
+  .current-weather-icon-container{
+      text-align: center;
+      line-height: 5rem;
+      vertical-align: middle;
+  }
+
+  .current-icon {
+    font-size: 7rem;
   }
