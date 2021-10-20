@@ -80,38 +80,38 @@ input {
       border-radius: 25px;
   }
 
-.searched-cities{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    font-size: 1.5rem;
-}
-
-/* current city section */
-.temp-icon-wrapper{
-  display: flex;
-  justify-content: space-between;
-}
-
-.title-city{
-    font-size: 4.5rem;
-}
-
-.current-icon{
-  font-size: 6.5rem;
-}
-  .temp-display{
-      font-size: 5rem;
+  .searched-cities{
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      font-size: 1.5rem;
   }
 
-  
+  /* current city section */
+  .temp-icon-wrapper{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .title-city{
+    font-size: 4.5rem;
+  }
+
+  .current-icon{
+    font-size: 6.5rem;
+  }
+
+  .temp-display{
+    font-size: 5rem;
+  }
+
   .current-temp-container,
   .current-weather-icon-container{
     display: inline-block;
     padding: 0 1rem 1rem 0;
   }
 
-
+  /* middle tile section */
   .daily-stats{
     display: flex;
     justify-content: space-between;
@@ -120,38 +120,30 @@ input {
   }
 
   /* 5 day forecast section */
-  .future-weather-card{
-      text-align: center;
-      font-size: 1rem;
-  }
-
   .forecast-card-column {
     display: block;
     flex-basis: 0;
     flex-grow: 1;
     flex-shrink: 1;
     padding: 1rem 0; 
+    text-align: center;
+    font-size: 1rem;
 }
 
 
-
-
-  @media (max-width: 576px) { 
-    .mobile-format{
-      align-items: center;
-    }
-
+@media (max-width: 576px) { 
+  .mobile-format{
+    align-items: center;
   }
+}
 
 
-  @media (max-width: 768px) { 
-    .background-img {
-      background-image: url(../images/skyline.jpg);
-      height: auto;
-    }
-
+@media (max-width: 768px) { 
+  .background-img {
+    background-image: url(../images/skyline.jpg);
+    height: auto;
   }
-
+}
 
 
 @media (max-width: 992px) { 

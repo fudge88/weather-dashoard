@@ -18,7 +18,12 @@
       rel="stylesheet"
     />
     <!-- font awesome CDN -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
     <!-- internal CSS -->
     <link rel="stylesheet" href="./assets/css/styles.css" />
     <title>Weather Dashboard</title>
@@ -31,47 +36,51 @@
           <div class="tile is-vertical is-8">
             <div class="tile">
               <div class="tile is-parent is-vertical">
-
-                  <!-- current dat and time -->
+                <!-- current dat and time -->
                 <article class="tile is-child notification dark-overlay">
                   <h1 class="pl-3 title">Current Day</h1>
                   <p class="pl-3 subtitle">Current time</p>
                 </article>
 
                 <!-- current city and weather info -->
-                <article class="tile is-child notification dark-overlay">
-                    <h1 class="pl-3 title-city">Birmingham</h1>
-                    <div class="column temp-icon-wrapper">
-                        <div class="ml-4 current-temp-container">
-                        <p class="temp-display">15*C</p>
-                        <p class="subtitle">Feels like 12*C</p>
-                        </div>
-                            <div class="ml-4 current-weather-icon-container">
-                                <i class="mb-4 current-icon fas fa-cloud-sun fa-2x"></i>
-                                <p class="subtitle">Partly Cloudy</p>
-                            </div>
+                <article
+                  class="tile is-child notification dark-overlay"
+                  id="current-weather-container"
+                >
+                  <!-- <h1 class="pl-3 title-city">Birmingham</h1>
+                  <div class="column temp-icon-wrapper">
+                    <div class="ml-4 current-temp-container">
+                      <p class="temp-display">15*C</p>
+                      <p class="subtitle">Feels like 12*C</p>
                     </div>
+                    <div class="ml-4 current-weather-icon-container">
+                      <i class="mb-4 current-icon fas fa-cloud-sun fa-2x"></i>
+                      <p class="subtitle">Partly Cloudy</p>
+                    </div>
+                  </div> -->
                 </article>
               </div>
 
-            <!-- current weather icon -->
+              <!-- current weather icon -->
               <div class="tile is-parent">
-                <article class="tile is-child notification dark-overlay mobile-format">
+                <article
+                  class="tile is-child notification dark-overlay mobile-format"
+                >
                   <h2 class="pt-4 pl-3 title">Daily Stats</h2>
                   <div class="column">
                     <div class="daily-stats">
-                        <div><i class="fas fa-tint fa-lg"></i> Humidity</div>
-                        <div>20*C</div>
+                      <div><i class="fas fa-tint fa-lg"></i> Humidity</div>
+                      <div>20*C</div>
                     </div>
                     <div class="daily-stats">
-                        <div><i class="fas fa-wind fa-lg "></i> Wind speed</div>
-                        <div>10*C</div>
+                      <div><i class="fas fa-wind fa-lg"></i> Wind speed</div>
+                      <div>10*C</div>
                     </div>
                     <div class="daily-stats">
-                        <div><i class="fas fa-sun fa-lg"></i> UV levels</div>
-                        <div>10*C</div>
+                      <div><i class="fas fa-sun fa-lg"></i> UV levels</div>
+                      <div>10*C</div>
                     </div>
-                    </div>
+                  </div>
                 </article>
               </div>
             </div>
@@ -79,52 +88,51 @@
             <!-- weekly forecast for searched area -->
             <div class="tile is-parent">
               <article class="tile is-child notification dark-overlay">
-                <div class="content ">
+                <div class="content">
                   <div class="columns is-mobile">
                     <!-- day card -->
                     <div class="forecast-card-column">
-                      <div class="future-weather-card">
-                        <p class="">Mon</p>
-                        <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
-                        <p>Cloudy & Rain</p>
-                        <p>10*C</p>
+                      <p>Mon</p>
+                      <div>
+                        <i class="fas fa-cloud-showers-heavy fa-2x"></i>
                       </div>
+                      <p>Cloudy & Rain</p>
+                      <p>10*C</p>
                     </div>
                     <!-- day card -->
                     <div class="forecast-card-column">
-                      <div class="future-weather-card">
-                        <p class="">Tue</p>
-                        <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
-                        <p>Cloudy & Rain</p>
-                        <p>10*C</p>
+                      <p>Tue</p>
+                      <div>
+                        <i class="fas fa-cloud-showers-heavy fa-2x"></i>
                       </div>
+                      <p>Cloudy & Rain</p>
+                      <p>10*C</p>
                     </div>
                     <!-- day card -->
                     <div class="forecast-card-column">
-                      <div class="future-weather-card">
-                        <p class="">Wed</p>
-                        <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
-                        <p>Cloudy & Rain</p>
-                        <p>10*C</p>
+                      <p>Wed</p>
+                      <div>
+                        <i class="fas fa-cloud-showers-heavy fa-2x"></i>
                       </div>
+                      <p>Cloudy & Rain</p>
+                      <p>10*C</p>
                     </div>
                     <!-- day card -->
                     <div class="forecast-card-column">
-                      <div class="future-weather-card">
-                        <p class="">Thur</p>
-                        <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
-                        <p>Cloudy & Rain</p>
-                        <p>10*C</p>
+                      <p>Thur</p>
+                      <div>
+                        <i class="fas fa-cloud-showers-heavy fa-2x"></i>
                       </div>
+                      <p>Cloudy & Rain</p>
+                      <p>10*C</p>
                     </div>
-                    <!-- day card -->
                     <div class="forecast-card-column">
-                      <div class="future-weather-card">
-                        <p class=" ">Fri</p>
-                        <div><i class="fas fa-cloud-showers-heavy fa-2x"></i></div>
-                        <p>Cloudy & Rain</p>
-                        <p>10*C</p>
+                      <p>Fri</p>
+                      <div>
+                        <i class="fas fa-cloud-showers-heavy fa-2x"> </i>
                       </div>
+                      <p>Cloudy & Rain</p>
+                      <p>10*C</p>
                     </div>
                   </div>
                 </div>
@@ -136,24 +144,22 @@
           <div class="tile is-parent tall-container">
             <article class="tile is-child notification dark-overlay">
               <div class="content">
-                  <!-- search container -->
+                <!-- search container -->
                 <div class="search_container">
-                  <input
-                    type="text"
-                    placeholder="Search city here"
-                  />
-                  <button class="search-btn"><i class="fas fa-search fa-lg"></i></button>
+                  <input type="text" placeholder="Search city here" />
+                  <button class="search-btn">
+                    <i class="fas fa-search fa-lg"></i>
+                  </button>
                 </div>
               </div>
-               <!-- historic searches -->
-                <div class="searched-cities">
-                  <div>London</div>
-                  <div>20*C</div>
-                </div>
-                <div class="searched-cities">
-                    <div>Glasgow</div>
-                    <div>10*C</div>
-                  </div>
+              <!-- historic searches -->
+              <div class="searched-cities">
+                <div>London</div>
+                <div>20*C</div>
+              </div>
+              <div class="searched-cities">
+                <div>Glasgow</div>
+                <div>10*C</div>
               </div>
             </article>
           </div>
