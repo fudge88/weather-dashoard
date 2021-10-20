@@ -65,8 +65,9 @@
               <div class="tile is-parent">
                 <article
                   class="tile is-child notification dark-overlay mobile-format"
+                  id="current-stats-container"
                 >
-                  <h2 class="pt-4 pl-3 title">Daily Stats</h2>
+                  <!-- <h2 class="pt-4 pl-3 title">Daily Stats</h2>
                   <div class="column">
                     <div class="daily-stats">
                       <div><i class="fas fa-tint fa-lg"></i> Humidity</div>
@@ -80,62 +81,23 @@
                       <div><i class="fas fa-sun fa-lg"></i> UV levels</div>
                       <div>10*C</div>
                     </div>
-                  </div>
+                  </div> -->
                 </article>
               </div>
             </div>
 
             <!-- weekly forecast for searched area -->
             <div class="tile is-parent">
-              <article class="tile is-child notification dark-overlay">
-                <div class="content">
-                  <div class="columns is-mobile">
-                    <!-- day card -->
-                    <div class="forecast-card-column">
-                      <p>Mon</p>
-                      <div>
-                        <i class="fas fa-cloud-showers-heavy fa-2x"></i>
-                      </div>
-                      <p>Cloudy & Rain</p>
-                      <p>10*C</p>
-                    </div>
-                    <!-- day card -->
-                    <div class="forecast-card-column">
-                      <p>Tue</p>
-                      <div>
-                        <i class="fas fa-cloud-showers-heavy fa-2x"></i>
-                      </div>
-                      <p>Cloudy & Rain</p>
-                      <p>10*C</p>
-                    </div>
-                    <!-- day card -->
-                    <div class="forecast-card-column">
-                      <p>Wed</p>
-                      <div>
-                        <i class="fas fa-cloud-showers-heavy fa-2x"></i>
-                      </div>
-                      <p>Cloudy & Rain</p>
-                      <p>10*C</p>
-                    </div>
-                    <!-- day card -->
-                    <div class="forecast-card-column">
-                      <p>Thur</p>
-                      <div>
-                        <i class="fas fa-cloud-showers-heavy fa-2x"></i>
-                      </div>
-                      <p>Cloudy & Rain</p>
-                      <p>10*C</p>
-                    </div>
-                    <div class="forecast-card-column">
-                      <p>Fri</p>
-                      <div>
-                        <i class="fas fa-cloud-showers-heavy fa-2x"> </i>
-                      </div>
-                      <p>Cloudy & Rain</p>
-                      <p>10*C</p>
-                    </div>
-                  </div>
-                </div>
+              <article
+                class="tile is-child notification dark-overlay"
+                id="weather-forecast-card-container"
+              >
+                <!-- <div class="content">
+                  <div
+                    class="columns is-mobile"
+                    id="forecast-card-container"
+                  ></div>
+                </div> -->
               </article>
             </div>
           </div>
