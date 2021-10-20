@@ -36,13 +36,9 @@ h3 {
 
 /* tiles styling */
 .dark-overlay {
-  background-color: rgba(0, 0, 0, 0.459);
+  background-color: rgba(0, 0, 0, 0.603);
   padding: 1rem;
   border-radius: 25px;
-}
-
-.tall-container {
-  /* height: 90vh; */
 }
 
 /* tall container styling */
@@ -87,18 +83,40 @@ input {
 .searched-cities{
     display: flex;
     justify-content: space-between;
-    padding: 1rem 3rem;
+    padding: 1rem;
     font-size: 1.5rem;
 }
 
-
 /* current city section */
+.temp-icon-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
 .title-city{
     font-size: 4.5rem;
 }
 
+.current-icon{
+  font-size: 6.5rem;
+}
   .temp-display{
-      font-size: 6rem;
+      font-size: 5rem;
+  }
+
+  
+  .current-temp-container,
+  .current-weather-icon-container{
+    display: inline-block;
+    padding: 0 1rem 1rem 0;
+  }
+
+
+  .daily-stats{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    font-size: 1.2rem;
   }
 
   /* 5 day forecast section */
@@ -107,12 +125,67 @@ input {
       font-size: 1rem;
   }
 
-  .current-weather-icon-container{
-      text-align: center;
-      line-height: 5rem;
-      vertical-align: middle;
+  .forecast-card-column {
+    display: block;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 1rem 0; 
+}
+
+
+
+
+  @media (max-width: 576px) { 
+    .mobile-format{
+      align-items: center;
+    }
+
   }
 
-  .current-icon {
-    font-size: 7rem;
+
+  @media (max-width: 768px) { 
+    .background-img {
+      background-image: url(../images/skyline.jpg);
+      height: auto;
+    }
+
   }
+
+
+
+@media (max-width: 992px) { 
+  input{
+    margin-left: 1rem;
+    font-size: 1rem;
+    padding: 12px;
+  }
+  .search-btn{
+    padding: 1rem;
+  }
+ }
+
+
+@media (max-width: 1200px) { 
+  .title-city{
+    font-size: 2.5rem;
+  }
+  .temp-display{
+      font-size: 4rem;
+  }
+  .current-icon {
+    font-size: 4rem;
+  }
+  .daily-stats,
+  .searched-cities{
+    font-size: 1rem;
+  }
+  .subtitle{
+    font-size: 1rem;
+  }
+  input{
+    margin-left: 2rem;
+    font-size: 1rem;
+  }
+}
+
