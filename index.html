@@ -46,19 +46,7 @@
                 <article
                   class="tile is-child notification dark-overlay"
                   id="current-weather-container"
-                >
-                  <!-- <h1 class="pl-3 title-city">Birmingham</h1>
-                  <div class="column temp-icon-wrapper">
-                    <div class="ml-4 current-temp-container">
-                      <p class="temp-display">15*C</p>
-                      <p class="subtitle">Feels like 12*C</p>
-                    </div>
-                    <div class="ml-4 current-weather-icon-container">
-                      <i class="mb-4 current-icon fas fa-cloud-sun fa-2x"></i>
-                      <p class="subtitle">Partly Cloudy</p>
-                    </div>
-                  </div> -->
-                </article>
+                ></article>
               </div>
 
               <!-- current weather icon -->
@@ -66,23 +54,7 @@
                 <article
                   class="tile is-child notification dark-overlay mobile-format"
                   id="current-stats-container"
-                >
-                  <!-- <h2 class="pt-4 pl-3 title">Daily Stats</h2>
-                  <div class="column">
-                    <div class="daily-stats">
-                      <div><i class="fas fa-tint fa-lg"></i> Humidity</div>
-                      <div>20*C</div>
-                    </div>
-                    <div class="daily-stats">
-                      <div><i class="fas fa-wind fa-lg"></i> Wind speed</div>
-                      <div>10*C</div>
-                    </div>
-                    <div class="daily-stats">
-                      <div><i class="fas fa-sun fa-lg"></i> UV levels</div>
-                      <div>10*C</div>
-                    </div>
-                  </div> -->
-                </article>
+                ></article>
               </div>
             </div>
 
@@ -91,14 +63,7 @@
               <article
                 class="tile is-child notification dark-overlay"
                 id="weather-forecast-card-container"
-              >
-                <!-- <div class="content">
-                  <div
-                    class="columns is-mobile"
-                    id="forecast-card-container"
-                  ></div>
-                </div> -->
-              </article>
+              ></article>
             </div>
           </div>
 
@@ -108,10 +73,16 @@
               <div class="content">
                 <!-- search container -->
                 <div class="search_container">
-                  <input type="text" placeholder="Search city here" />
-                  <button class="search-btn">
-                    <i class="fas fa-search fa-lg"></i>
-                  </button>
+                  <form class="" id="search-form">
+                    <input
+                      type="text"
+                      placeholder="Search city here"
+                      id="cityInput"
+                    />
+                    <button class="search-btn">
+                      <i class="fas fa-search fa-lg"></i>
+                    </button>
+                  </form>
                 </div>
               </div>
               <!-- historic searches -->
@@ -136,6 +107,15 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+
+    <!-- moments CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
     <!-- internal JS file -->
     <script src="./assets/js/script.js"></script>
   </body>

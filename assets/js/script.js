@@ -1,32 +1,39 @@
+const currentWeatherContainer = $("#current-weather-container");
+const currentStatsContainer = $("#current-stats-container");
+const mainForecastCardContainer = $("#weather-forecast-card-container");
+
 const API_KEY = "4b78eb4a041f6b18c48e4d3b7d624d8d";
 
 const getCurrentData = function (name, forecastData) {
   return {
     name: name,
     temperature: forecastData.current.temp,
-    wind: forecastData.current.wind,
+    wind: forecastData.current.wind_speed,
     humidity: forecastData.current.humidity,
     uvi: forecastData.current.uvi,
     feels_like: forecastData.current.feels_like,
     sunset: forecastData.current.sunset,
     sunrise: forecastData.current.sunrise,
-    date: "(3/30/2021)",
-    iconCode: "04n",
+    date: getFormattedDate(forecastData.current.dt),
+    iconCode: forecastData.current.weather[0].icon,
   };
+};
+
+const getFormattedDate = function (unixTimestamp) {
+  return moment.unix(unixTimestamp).format("ddd DD/MM");
 };
 
 const getForecastData = function (forecastData) {
   const callback = function (each) {
-    console.log(each);
     return {
-      date: "(3/30/2021)",
+      date: getFormattedDate(each.dt),
       temperature: each.temp.max,
       wind: each.wind_speed,
       humidity: each.humidity,
-      iconCode: "04n",
+      iconCode: each.weather[0].icon,
     };
   };
-  return forecastData.daily.map(callback);
+  return forecastData.daily.slice(1, 6).map(callback);
 };
 
 const getWeatherData = async (cityName) => {
@@ -52,8 +59,6 @@ const getWeatherData = async (cityName) => {
   };
 };
 
-const currentWeatherContainer = $("#current-weather-container");
-
 // construct current weather card
 const renderCurrentWeatherCard = function (currentData) {
   const currentWeatherCard = `<h1 class="pl-3 title-city">${currentData.name}</h1>
@@ -70,8 +75,6 @@ const renderCurrentWeatherCard = function (currentData) {
 
   currentWeatherContainer.append(currentWeatherCard);
 };
-
-const currentStatsContainer = $("#current-stats-container");
 
 // construct current stats card
 const renderCurrentStatsCard = function (currentData) {
@@ -93,8 +96,6 @@ const renderCurrentStatsCard = function (currentData) {
 
   currentStatsContainer.append(currentStatsCard);
 };
-
-const mainForecastCardContainer = $("#weather-forecast-card-container");
 
 // construct weather forecast cards
 const renderForecastWeatherCards = function (forecastData) {
@@ -134,4 +135,12 @@ const onLoad = async function () {
   renderWeatherCard(weatherData);
 };
 
+const handleSearch = function (event) {
+  event.preventDefault();
+
+  const cityName = $("#cityInput").val();
+  console.log("submit");
+};
+
+$("#search-form").on("submit", handleSearch);
 $(document).ready(onLoad);
