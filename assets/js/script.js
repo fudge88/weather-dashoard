@@ -1,53 +1,33 @@
-const mockData = {
-  current: {
-    name: "London",
-    temperature: 123.45,
-    wind: 111.22,
-    humidity: 33,
-    uvi: 2.5,
+const API_KEY = "4b78eb4a041f6b18c48e4d3b7d624d8d";
+
+const getCurrentData = function (name, forecastData) {
+  return {
+    name: name,
+    temperature: forecastData.current.temp,
+    wind: forecastData.current.wind,
+    humidity: forecastData.current.humidity,
+    uvi: forecastData.current.uvi,
+    feels_like: forecastData.current.feels_like,
+    sunset: forecastData.current.sunset,
+    sunrise: forecastData.current.sunrise,
     date: "(3/30/2021)",
     iconCode: "04n",
-  },
-  forecast: [
-    {
-      date: "(3/30/2021)",
-      temperature: 123.45,
-      wind: 111.22,
-      humidity: 33,
-      iconCode: "04n",
-    },
-    {
-      date: "(3/30/2021)",
-      temperature: 123.45,
-      wind: 111.22,
-      humidity: 33,
-      iconCode: "04n",
-    },
-    {
-      date: "(3/30/2021)",
-      temperature: 123.45,
-      wind: 111.22,
-      humidity: 33,
-      iconCode: "04n",
-    },
-    {
-      date: "(3/30/2021)",
-      temperature: 123.45,
-      wind: 111.22,
-      humidity: 33,
-      iconCode: "04n",
-    },
-    {
-      date: "(3/30/2021)",
-      temperature: 123.45,
-      wind: 111.22,
-      humidity: 33,
-      iconCode: "04n",
-    },
-  ],
+  };
 };
 
-const API_KEY = "4b78eb4a041f6b18c48e4d3b7d624d8d";
+const getForecastData = function (forecastData) {
+  const callback = function (each) {
+    console.log(each);
+    return {
+      date: "(3/30/2021)",
+      temperature: each.temp.max,
+      wind: each.wind_speed,
+      humidity: each.humidity,
+      iconCode: "04n",
+    };
+  };
+  return forecastData.daily.map(callback);
+};
 
 const getWeatherData = async (cityName) => {
   //   1st api call
@@ -62,57 +42,13 @@ const getWeatherData = async (cityName) => {
   const forecastUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=imperial`;
   const forecastDataResponse = await fetch(forecastUrl);
   const forecastData = await forecastDataResponse.json();
-  console.log(forecastUrl);
+
+  const current = getCurrentData(name, forecastData);
+  const forecast = getForecastData(forecastData);
+
   return {
-    current: {
-      name: name,
-      temperature: forecastData.current.temp,
-      wind: forecastData.current.wind,
-      humidity: forecastData.current.humidity,
-      uvi: forecastData.current.uvi,
-      feels_like: forecastData.current.feels_like,
-      sunset: forecastData.current.sunset,
-      sunrise: forecastData.current.sunrise,
-      date: "(3/30/2021)",
-      iconCode: "04n",
-    },
-    forecast: [
-      {
-        date: "(3/30/2021)",
-        temperature: 123.45,
-        wind: 111.22,
-        humidity: 33,
-        iconCode: "04n",
-      },
-      {
-        date: "(3/30/2021)",
-        temperature: 123.45,
-        wind: 111.22,
-        humidity: 33,
-        iconCode: "04n",
-      },
-      {
-        date: "(3/30/2021)",
-        temperature: 123.45,
-        wind: 111.22,
-        humidity: 33,
-        iconCode: "04n",
-      },
-      {
-        date: "(3/30/2021)",
-        temperature: 123.45,
-        wind: 111.22,
-        humidity: 33,
-        iconCode: "04n",
-      },
-      {
-        date: "(3/30/2021)",
-        temperature: 123.45,
-        wind: 111.22,
-        humidity: 33,
-        iconCode: "04n",
-      },
-    ],
+    current: current,
+    forecast: forecast,
   };
 };
 
@@ -190,5 +126,12 @@ const renderWeatherCard = function (weatherData) {
   renderCurrentStatsCard(weatherData.current);
   renderForecastWeatherCards(weatherData.forecast);
 };
-getWeatherData("london");
-renderWeatherCard(mockData);
+
+const onLoad = async function () {
+  // get weather from api
+  const weatherData = await getWeatherData("birmingham");
+
+  renderWeatherCard(weatherData);
+};
+
+$(document).ready(onLoad);
