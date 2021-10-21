@@ -123,24 +123,24 @@ const renderForecastWeatherCards = function (forecastData) {
 
 // current weather card
 const renderWeatherCard = function (weatherData) {
+  currentWeatherContainer.empty();
   renderCurrentWeatherCard(weatherData.current);
+  currentStatsContainer.empty();
   renderCurrentStatsCard(weatherData.current);
   renderForecastWeatherCards(weatherData.forecast);
 };
 
-const onLoad = async function () {
-  // get weather from api
-  const weatherData = await getWeatherData("birmingham");
-
-  renderWeatherCard(weatherData);
-};
-
-const handleSearch = function (event) {
+const handleSearch = async function (event) {
   event.preventDefault();
 
   const cityName = $("#cityInput").val();
-  console.log("submit");
+  if (cityName) {
+    const weatherData = await getWeatherData(cityName);
+
+    mainForecastCardContainer.empty();
+
+    renderWeatherCard(weatherData);
+  }
 };
 
 $("#search-form").on("submit", handleSearch);
-$(document).ready(onLoad);
