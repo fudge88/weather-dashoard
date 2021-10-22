@@ -1,7 +1,7 @@
 const currentWeatherContainer = $("#current-weather-container");
 const currentStatsContainer = $("#current-stats-container");
 const mainForecastCardContainer = $("#weather-forecast-card-container");
-const currentDayTimeContainer = $("current-day-time-container");
+const currentDayTimeContainer = $("#current-day-time-container");
 const API_KEY = "4b78eb4a041f6b18c48e4d3b7d624d8d";
 
 const getCurrentData = function (name, forecastData) {
@@ -15,7 +15,7 @@ const getCurrentData = function (name, forecastData) {
     desc: forecastData.current.weather[0].description,
     sunset: getFormattedDate(forecastData.current.sunset, "HH:mm"),
     sunrise: getFormattedDate(forecastData.current.sunrise, "HH:mm"),
-    date: getFormattedDate(forecastData.current.dt, "dddd Do MMMM YY"),
+    date: getFormattedDate(forecastData.current.dt, "dddd DD MMMM YY"),
     time: getFormattedDate(forecastData.current.dt, "HH:mm"),
     iconCode: forecastData.current.weather[0].icon,
   };
@@ -27,7 +27,6 @@ const getFormattedDate = function (unixTimestamp, format) {
 
 const getForecastData = function (forecastData) {
   const callback = function (each) {
-    console.log(each);
     return {
       date: getFormattedDate(each.dt, "ddd DD/MM"),
       temperature: each.temp.max,
@@ -36,11 +35,6 @@ const getForecastData = function (forecastData) {
       iconCode: each.weather[0].icon,
     };
   };
-
-  // $("#currentDay").text.getFormattedDate(
-  //   forecastData.current.dt,
-  //   "dddd DD mmmm"
-  // );
 
   return forecastData.daily.slice(1, 6).map(callback);
 };
@@ -63,8 +57,8 @@ const getWeatherData = async (cityName) => {
   const forecast = getForecastData(forecastData);
 
   return {
-    current: current,
-    forecast: forecast,
+    current,
+    forecast,
   };
 };
 
@@ -86,11 +80,9 @@ const renderCurrentWeatherCard = function (currentData) {
 };
 
 // CANNOT GET THIS TO RENDER
-const RenderCurrentDayTimeCard = function (currentData) {
+const renderCurrentDayTimeCard = function (currentData) {
   const currentDayTimeCard = ` <h1 class="pl-3 title" id="currentDay">${currentData.date}</h1>
   <p class="pl-3 subtitle" id="currentTime">${currentData.time}</p>`;
-  console.log(currentData.date);
-  console.log(currentData.time);
   currentDayTimeContainer.append(currentDayTimeCard);
 };
 
@@ -150,7 +142,8 @@ const renderForecastWeatherCards = function (forecastData) {
 
 // current weather card
 const renderWeatherCard = function (weatherData) {
-  RenderCurrentDayTimeCard(weatherData.current);
+  currentDayTimeContainer.empty();
+  renderCurrentDayTimeCard(weatherData.current);
 
   currentWeatherContainer.empty();
   renderCurrentWeatherCard(weatherData.current);
@@ -158,7 +151,28 @@ const renderWeatherCard = function (weatherData) {
   currentStatsContainer.empty();
   renderCurrentStatsCard(weatherData.current);
 
+  mainForecastCardContainer.empty();
   renderForecastWeatherCards(weatherData.forecast);
+};
+
+const renderSearchedCities = function () {
+  const cities = JSON.parse(localStorage.getItem("searchedCities")) ?? [];
+  const searchedCitiesContainer = $("#searched-cities-container");
+  searchedCitiesContainer.empty();
+
+  const constructAndAppendCity = function (each) {
+    const searchedCitiesList = `<li>${each}</li>`;
+    searchedCitiesContainer.append(searchedCitiesList);
+  };
+  cities.forEach(constructAndAppendCity);
+};
+
+const setCitiesInLS = function (cityName) {
+  const cities = JSON.parse(localStorage.getItem("searchedCities")) ?? [];
+  if (!cities.includes(cityName)) {
+    cities.push(cityName);
+    localStorage.setItem("searchedCities", JSON.stringify(cities));
+  }
 };
 
 const handleSearch = async function (event) {
@@ -168,19 +182,9 @@ const handleSearch = async function (event) {
   if (cityName) {
     const weatherData = await getWeatherData(cityName);
 
-    mainForecastCardContainer.empty();
-
     renderWeatherCard(weatherData);
-
-    // get city from LS
-    const cities = JSON.parse(localStorage.getItem("searchedCities")) ?? [];
-    console.log(cities);
-    // insert cityName in cities
-    if (!cities.includes(cityName)) {
-      cities.push(cityName);
-      // set cities in LS
-      localStorage.setItem("searchedCities", JSON.stringify(cities));
-    }
+    setCitiesInLS(cityName);
+    renderSearchedCities();
   }
 };
 
