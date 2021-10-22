@@ -5,7 +5,6 @@ const currentDayTimeContainer = $("current-day-time-container");
 const API_KEY = "4b78eb4a041f6b18c48e4d3b7d624d8d";
 
 const getCurrentData = function (name, forecastData) {
-  console.log(getCurrentData);
   return {
     name: name,
     temperature: forecastData.current.temp,
@@ -172,6 +171,16 @@ const handleSearch = async function (event) {
     mainForecastCardContainer.empty();
 
     renderWeatherCard(weatherData);
+
+    // get city from LS
+    const cities = JSON.parse(localStorage.getItem("searchedCities")) ?? [];
+    console.log(cities);
+    // insert cityName in cities
+    if (!cities.includes(cityName)) {
+      cities.push(cityName);
+      // set cities in LS
+      localStorage.setItem("searchedCities", JSON.stringify(cities));
+    }
   }
 };
 
