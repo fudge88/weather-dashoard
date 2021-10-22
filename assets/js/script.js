@@ -1,10 +1,11 @@
 const currentWeatherContainer = $("#current-weather-container");
 const currentStatsContainer = $("#current-stats-container");
 const mainForecastCardContainer = $("#weather-forecast-card-container");
-
+const currentDayTimeContainer = $("current-day-time-container");
 const API_KEY = "4b78eb4a041f6b18c48e4d3b7d624d8d";
 
 const getCurrentData = function (name, forecastData) {
+  console.log(getCurrentData);
   return {
     name: name,
     temperature: forecastData.current.temp,
@@ -12,27 +13,36 @@ const getCurrentData = function (name, forecastData) {
     humidity: forecastData.current.humidity,
     uvi: forecastData.current.uvi,
     feels_like: forecastData.current.feels_like,
-    sunset: forecastData.current.sunset,
-    sunrise: forecastData.current.sunrise,
-    date: getFormattedDate(forecastData.current.dt),
+    desc: forecastData.current.weather[0].description,
+    sunset: getFormattedDate(forecastData.current.sunset, "HH:mm"),
+    sunrise: getFormattedDate(forecastData.current.sunrise, "HH:mm"),
+    date: getFormattedDate(forecastData.current.dt, "dddd Do MMMM YY"),
+    time: getFormattedDate(forecastData.current.dt, "HH:mm"),
     iconCode: forecastData.current.weather[0].icon,
   };
 };
 
-const getFormattedDate = function (unixTimestamp) {
-  return moment.unix(unixTimestamp).format("ddd DD/MM");
+const getFormattedDate = function (unixTimestamp, format) {
+  return moment.unix(unixTimestamp).format(format);
 };
 
 const getForecastData = function (forecastData) {
   const callback = function (each) {
+    console.log(each);
     return {
-      date: getFormattedDate(each.dt),
+      date: getFormattedDate(each.dt, "ddd DD/MM"),
       temperature: each.temp.max,
-      wind: each.wind_speed,
+      wind_speed: each.wind_speed,
       humidity: each.humidity,
       iconCode: each.weather[0].icon,
     };
   };
+
+  // $("#currentDay").text.getFormattedDate(
+  //   forecastData.current.dt,
+  //   "dddd DD mmmm"
+  // );
+
   return forecastData.daily.slice(1, 6).map(callback);
 };
 
@@ -65,35 +75,52 @@ const renderCurrentWeatherCard = function (currentData) {
     <div class="column temp-icon-wrapper">
         <div class="ml-4 current-temp-container">
         <p class="temp-display">${currentData.temperature}&deg</p>
-        <p class="subtitle">Feels like 12*C</p>
+        <p class="subtitle">${currentData.feels_like}</p>
         </div>
         <div class="ml-4 current-weather-icon-container">
         <img src="https://openweathermap.org/img/w/${currentData.iconCode}.png" class="mb-4 current-icon"/>
-        <p class="subtitle">Partly Cloudy</p>
+        <p class="subtitle">${currentData.desc}</p>
         </div>
     </div>`;
 
   currentWeatherContainer.append(currentWeatherCard);
 };
 
+// CANNOT GET THIS TO RENDER
+const RenderCurrentDayTimeCard = function (currentData) {
+  const currentDayTimeCard = ` <h1 class="pl-3 title" id="currentDay">${currentData.date}</h1>
+  <p class="pl-3 subtitle" id="currentTime">${currentData.time}</p>`;
+  console.log(currentData.date);
+  console.log(currentData.time);
+  currentDayTimeContainer.append(currentDayTimeCard);
+};
+
 // construct current stats card
 const renderCurrentStatsCard = function (currentData) {
   const currentStatsCard = `<h2 class="pt-4 pl-3 title">Daily Stats</h2>
     <div class="column">
-        <div class="daily-stats">
-        <div><i class="fas fa-tint fa-lg"></i> Humidity</div>
-        <div>${currentData.humidity}%</div>
-        </div>
-        <div class="daily-stats">
-        <div><i class="fas fa-wind fa-lg"></i> Wind speed</div>
-        <div>${currentData.wind}mph</div>
-        </div>
-        <div class="daily-stats">
-        <div><i class="fas fa-sun fa-lg"></i> UV levels</div>
-        <div>${currentData.uvi}</div>
-        </div>
-    </div>`;
-
+    <div class="daily-stats">
+    <div><i class="fas fa-sun fa-lg"></i> Sunrise </div>
+    <div>${currentData.sunrise}am</div>
+    </div>
+    <div class="daily-stats">
+    <div><i class="fas fa-moon"></i> sunset</div>
+    <div>${currentData.sunset}pm</div>
+    </div>
+    <hr>
+    <div class="daily-stats">
+    <div><i class="fas fa-tint fa-lg"></i> Humidity</div>
+    <div>${currentData.humidity}%</div>
+    </div>
+    <div class="daily-stats">
+    <div><i class="fas fa-wind fa-lg"></i> Wind speed</div>
+    <div>${currentData.wind}mph</div>
+    </div>
+    <div class="daily-stats">
+    <div>UV levels</div>
+    <span>${currentData.uvi}</span>
+    </div>
+</div>`;
   currentStatsContainer.append(currentStatsCard);
 };
 
@@ -105,8 +132,9 @@ const renderForecastWeatherCards = function (forecastData) {
         <div>
             <img src="https://openweathermap.org/img/w/${each.iconCode}.png"/>
         </div>
-        <p>Cloudy & Rain</p>
-        <p>${each.temperature}</p>
+        <p>${each.temperature}&deg</p>
+        <p>${each.wind_speed}mph</p>
+        <p>${each.humidity}%</p>
         </div>`;
   };
 
@@ -114,8 +142,8 @@ const renderForecastWeatherCards = function (forecastData) {
 
   const forecastCardsContainer = `<div class="content">
     <div class="columns is-mobile" id="forecast-card-container">
-    </div>
     ${forecastCards}
+    </div>
     </div>`;
 
   mainForecastCardContainer.append(forecastCardsContainer);
@@ -123,10 +151,14 @@ const renderForecastWeatherCards = function (forecastData) {
 
 // current weather card
 const renderWeatherCard = function (weatherData) {
+  RenderCurrentDayTimeCard(weatherData.current);
+
   currentWeatherContainer.empty();
   renderCurrentWeatherCard(weatherData.current);
+
   currentStatsContainer.empty();
   renderCurrentStatsCard(weatherData.current);
+
   renderForecastWeatherCards(weatherData.forecast);
 };
 
