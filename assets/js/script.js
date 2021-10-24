@@ -56,7 +56,6 @@ const getWeatherData = async (cityName) => {
   const forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}&units=imperial`;
   const forecastDataResponse = await fetch(forecastUrl);
   const forecastData = await forecastDataResponse.json();
-
   const current = getCurrentData(name, forecastData);
   const forecast = getForecastData(forecastData);
 
@@ -68,6 +67,7 @@ const getWeatherData = async (cityName) => {
 
 // uvi colour function
 const getUviClass = function (uvi) {
+  console.log(uvi);
   if (uvi >= 0 && uvi < 3) {
     return "has-background-success has-text-black";
   } else if (uvi >= 3 && uvi < 6) {
@@ -126,9 +126,8 @@ const renderCurrentStatsCard = function (currentData) {
     </div>
     <div class="daily-stats">
     <div>UV Levels</div>
-    <span class="uvi-box ${getUviClass(currentData.uvi)}">${
-    currentData.uvi
-  }</span>
+    <span class="uvi-box ${getUviClass(currentData.uvi)}">
+    ${currentData.uvi}</span>
     </div>
 </div>`;
   currentStatsContainer.append(currentStatsCard);
