@@ -4,6 +4,7 @@ const mainForecastCardContainer = $("#weather-forecast-card-container");
 const currentDayTimeContainer = $("#current-day-time-container");
 const API_KEY = "4b78eb4a041f6b18c48e4d3b7d624d8d";
 
+// condensed array values against variables for current
 const getCurrentData = function (name, forecastData) {
   return {
     name: name,
@@ -21,10 +22,12 @@ const getCurrentData = function (name, forecastData) {
   };
 };
 
+// getting date and time using unix
 const getFormattedDate = function (unixTimestamp, format) {
   return moment.unix(unixTimestamp).format(format);
 };
 
+// condensed array values against variables for forecast
 const getForecastData = function (forecastData) {
   const callback = function (each) {
     return {
@@ -39,6 +42,7 @@ const getForecastData = function (forecastData) {
   return forecastData.daily.slice(1, 6).map(callback);
 };
 
+// api call
 const getWeatherData = async (cityName) => {
   //   1st api call
   const currentUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`;
@@ -62,6 +66,7 @@ const getWeatherData = async (cityName) => {
   };
 };
 
+// uvi colour function
 const getUviClass = function (uvi) {
   if (uvi >= 0 && uvi < 3) {
     return "has-background-success has-text-black";
@@ -92,7 +97,7 @@ const renderCurrentWeatherCard = function (currentData) {
   currentWeatherContainer.append(currentWeatherCard);
 };
 
-// CANNOT GET THIS TO RENDER
+// construct date and time card
 const renderCurrentDayTimeCard = function (currentData) {
   const currentDayTimeCard = ` <h1 class="pl-3 title-date" id="currentDay">${currentData.date}</h1>
   <p class="pl-3 title-time" id="currentTime">${currentData.time}</p>`;
@@ -169,6 +174,7 @@ const renderWeatherCard = function (weatherData) {
   renderForecastWeatherCards(weatherData.forecast);
 };
 
+// render searched cities
 const renderSearchedCities = function () {
   const cities = JSON.parse(localStorage.getItem("searchedCities")) ?? [];
   const searchedCitiesContainer = $("#searched-cities-container");
@@ -191,6 +197,7 @@ const renderSearchedCities = function () {
   cities.reverse().forEach(constructAndAppendCity);
 };
 
+// local storage
 const setCitiesInLS = function (cityName) {
   const cities = JSON.parse(localStorage.getItem("searchedCities")) ?? [];
   if (!cities.includes(cityName)) {
@@ -199,11 +206,13 @@ const setCitiesInLS = function (cityName) {
   }
 };
 
+// get data and render weather card
 const renderWeatherInfo = async function (cityName) {
   const weatherData = await getWeatherData(cityName);
   renderWeatherCard(weatherData);
 };
 
+// get city user has searched
 const handleSearch = async function (event) {
   event.preventDefault();
 
@@ -215,6 +224,7 @@ const handleSearch = async function (event) {
   }
 };
 
+// on ready - when page loads
 const onReady = function () {
   renderSearchedCities();
   const cities = JSON.parse(localStorage.getItem("searchedCities")) ?? [];
