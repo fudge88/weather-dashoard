@@ -53,7 +53,7 @@ const getWeatherData = async (cityName) => {
   const name = currentData.name;
 
   // 2nd api call
-  const forecastUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}&units=imperial`;
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}&units=imperial`;
   const forecastDataResponse = await fetch(forecastUrl);
   const forecastData = await forecastDataResponse.json();
 
