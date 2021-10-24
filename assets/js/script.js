@@ -10,7 +10,8 @@ const getCurrentData = function (name, forecastData) {
     temperature: forecastData.current.temp,
     wind: forecastData.current.wind_speed,
     humidity: forecastData.current.humidity,
-    uvi: forecastData.current.uvi,
+    // uvi: forecastData.current.uvi,
+    uvi: 8.99,
     feels_like: forecastData.current.feels_like,
     desc: forecastData.current.weather[0].description,
     sunset: getFormattedDate(forecastData.current.sunset, "HH:mm"),
@@ -62,15 +63,27 @@ const getWeatherData = async (cityName) => {
   };
 };
 
+const getUviClass = function (uvi) {
+  if (uvi >= 0 && uvi < 3) {
+    return "has-background-success has-text-black";
+  } else if (uvi >= 3 && uvi < 6) {
+    return "has-background-warning has-text-black";
+  } else if (uvi >= 6 && uvi < 8) {
+    return "has-background-danger has-text-black";
+  } else {
+    return "has-background-link has-text-danger-light";
+  }
+};
+
 // construct current weather card
 const renderCurrentWeatherCard = function (currentData) {
   const currentWeatherCard = `<h1 class="pl-3 title-city">${currentData.name}</h1>
-    <div class="column temp-icon-wrapper">
-        <div class="ml-4 current-temp-container">
+    <div class="columns temp-icon-wrapper">
+        <div class="ml-4 current-temp-container column">
         <p class="temp-display">${currentData.temperature}&deg</p>
-        <p class="subtitle">${currentData.feels_like}</p>
+        <p class="subtitle">Feels like  ${currentData.feels_like}&deg</p>
         </div>
-        <div class="ml-4 current-weather-icon-container">
+        <div class="ml-4 current-weather-icon-container column">
         <img src="https://openweathermap.org/img/w/${currentData.iconCode}.png" class="mb-4 current-icon"/>
         <p class="subtitle">${currentData.desc}</p>
         </div>
@@ -109,7 +122,7 @@ const renderCurrentStatsCard = function (currentData) {
     </div>
     <div class="daily-stats">
     <div>UV levels</div>
-    <span>${currentData.uvi}</span>
+    <span class="${getUviClass(currentData.uvi)}">${currentData.uvi}</span>
     </div>
 </div>`;
   currentStatsContainer.append(currentStatsCard);
@@ -161,10 +174,20 @@ const renderSearchedCities = function () {
   searchedCitiesContainer.empty();
 
   const constructAndAppendCity = function (each) {
-    const searchedCitiesList = `<li>${each}</li>`;
+    const searchedCitiesList = `<li data-city=${each}>${each}</li>`;
+
     searchedCitiesContainer.append(searchedCitiesList);
   };
-  cities.forEach(constructAndAppendCity);
+  const handleClick = function (event) {
+    const target = $(event.target);
+    if (target.is("li")) {
+      const cityName = target.data("city");
+      renderWeatherInfo(cityName);
+    }
+  };
+
+  searchedCitiesContainer.on("click", handleClick);
+  cities.reverse().forEach(constructAndAppendCity);
 };
 
 const setCitiesInLS = function (cityName) {
@@ -175,17 +198,31 @@ const setCitiesInLS = function (cityName) {
   }
 };
 
+const renderWeatherInfo = async function (cityName) {
+  const weatherData = await getWeatherData(cityName);
+  renderWeatherCard(weatherData);
+};
+
 const handleSearch = async function (event) {
   event.preventDefault();
 
   const cityName = $("#cityInput").val();
   if (cityName) {
-    const weatherData = await getWeatherData(cityName);
-
-    renderWeatherCard(weatherData);
+    renderWeatherInfo(cityName);
     setCitiesInLS(cityName);
     renderSearchedCities();
   }
 };
 
+const onReady = function () {
+  renderSearchedCities();
+  const cities = JSON.parse(localStorage.getItem("searchedCities")) ?? [];
+
+  if (cities.length) {
+    const cityName = cities[cities.length - 1];
+    renderWeatherInfo(cityName);
+  }
+};
+
 $("#search-form").on("submit", handleSearch);
+$(document).ready(onReady);
