@@ -10,13 +10,12 @@ const getCurrentData = function (name, forecastData) {
     temperature: forecastData.current.temp,
     wind: forecastData.current.wind_speed,
     humidity: forecastData.current.humidity,
-    // uvi: forecastData.current.uvi,
-    uvi: 8.99,
+    uvi: forecastData.current.uvi,
     feels_like: forecastData.current.feels_like,
     desc: forecastData.current.weather[0].description,
     sunset: getFormattedDate(forecastData.current.sunset, "HH:mm"),
     sunrise: getFormattedDate(forecastData.current.sunrise, "HH:mm"),
-    date: getFormattedDate(forecastData.current.dt, "dddd DD MMMM YY"),
+    date: getFormattedDate(forecastData.current.dt, "dddd DD MMMM"),
     time: getFormattedDate(forecastData.current.dt, "HH:mm"),
     iconCode: forecastData.current.weather[0].icon,
   };
@@ -29,7 +28,7 @@ const getFormattedDate = function (unixTimestamp, format) {
 const getForecastData = function (forecastData) {
   const callback = function (each) {
     return {
-      date: getFormattedDate(each.dt, "ddd DD/MM"),
+      date: getFormattedDate(each.dt, "ddd"),
       temperature: each.temp.max,
       wind_speed: each.wind_speed,
       humidity: each.humidity,
@@ -42,7 +41,7 @@ const getForecastData = function (forecastData) {
 
 const getWeatherData = async (cityName) => {
   //   1st api call
-  const currentUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`;
+  const currentUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`;
   const currentDataResponse = await fetch(currentUrl);
   const currentData = await currentDataResponse.json();
   const lat = currentData.coord.lat;
@@ -50,7 +49,7 @@ const getWeatherData = async (cityName) => {
   const name = currentData.name;
 
   // 2nd api call
-  const forecastUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=imperial`;
+  const forecastUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}&units=imperial`;
   const forecastDataResponse = await fetch(forecastUrl);
   const forecastData = await forecastDataResponse.json();
 
@@ -79,13 +78,14 @@ const getUviClass = function (uvi) {
 const renderCurrentWeatherCard = function (currentData) {
   const currentWeatherCard = `<h1 class="pl-3 title-city">${currentData.name}</h1>
     <div class="columns temp-icon-wrapper">
+    <div class="ml-4 current-weather-icon-container column">
+    <img src="https://openweathermap.org/img/w/${currentData.iconCode}.png" class="mt-4 current-icon"/>
+    <p class="mb-4 subtitle">${currentData.desc}</p>
+    </div>
         <div class="ml-4 current-temp-container column">
-        <p class="temp-display">${currentData.temperature}&deg</p>
-        <p class="subtitle">Feels like  ${currentData.feels_like}&deg</p>
-        </div>
-        <div class="ml-4 current-weather-icon-container column">
-        <img src="https://openweathermap.org/img/w/${currentData.iconCode}.png" class="mb-4 current-icon"/>
-        <p class="subtitle">${currentData.desc}</p>
+        <p class="mb-3 temp-display">${currentData.temperature}&degC</p>
+        <p class="mb-3 subtitle">Feels like  ${currentData.feels_like}&degC</p>
+        
         </div>
     </div>`;
 
@@ -94,21 +94,20 @@ const renderCurrentWeatherCard = function (currentData) {
 
 // CANNOT GET THIS TO RENDER
 const renderCurrentDayTimeCard = function (currentData) {
-  const currentDayTimeCard = ` <h1 class="pl-3 title" id="currentDay">${currentData.date}</h1>
-  <p class="pl-3 subtitle" id="currentTime">${currentData.time}</p>`;
+  const currentDayTimeCard = ` <h1 class="pl-3 title-date" id="currentDay">${currentData.date}</h1>
+  <p class="pl-3 title-time" id="currentTime">${currentData.time}</p>`;
   currentDayTimeContainer.append(currentDayTimeCard);
 };
 
 // construct current stats card
 const renderCurrentStatsCard = function (currentData) {
-  const currentStatsCard = `<h2 class="pt-4 pl-3 title">Daily Stats</h2>
-    <div class="column">
+  const currentStatsCard = `<div class="column">
     <div class="daily-stats">
     <div><i class="fas fa-sun fa-lg"></i> Sunrise </div>
     <div>${currentData.sunrise}am</div>
     </div>
     <div class="daily-stats">
-    <div><i class="fas fa-moon"></i> sunset</div>
+    <div><i class="fas fa-moon"></i> Sunset</div>
     <div>${currentData.sunset}pm</div>
     </div>
     <hr>
@@ -121,8 +120,10 @@ const renderCurrentStatsCard = function (currentData) {
     <div>${currentData.wind}mph</div>
     </div>
     <div class="daily-stats">
-    <div>UV levels</div>
-    <span class="${getUviClass(currentData.uvi)}">${currentData.uvi}</span>
+    <div>UV Levels</div>
+    <span class="uvi-box ${getUviClass(currentData.uvi)}">${
+    currentData.uvi
+  }</span>
     </div>
 </div>`;
   currentStatsContainer.append(currentStatsCard);
@@ -136,9 +137,9 @@ const renderForecastWeatherCards = function (forecastData) {
         <div>
             <img src="https://openweathermap.org/img/w/${each.iconCode}.png"/>
         </div>
-        <p>${each.temperature}&deg</p>
-        <p>${each.wind_speed}mph</p>
-        <p>${each.humidity}%</p>
+        <p>${each.temperature}&degC</p>
+        <p><i class="fas fa-wind fa-lg"></i>  ${each.wind_speed}mph</p>
+        <p><i class="fas fa-tint fa-lg"></i>  ${each.humidity}%</p>
         </div>`;
   };
 
@@ -174,7 +175,7 @@ const renderSearchedCities = function () {
   searchedCitiesContainer.empty();
 
   const constructAndAppendCity = function (each) {
-    const searchedCitiesList = `<li data-city=${each}>${each}</li>`;
+    const searchedCitiesList = `<li class="searched-cities" data-city=${each}>${each}</li>`;
 
     searchedCitiesContainer.append(searchedCitiesList);
   };
