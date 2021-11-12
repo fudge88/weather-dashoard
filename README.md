@@ -71,3 +71,8 @@ When you use an application on your mobile phone, the application connects to th
 [StackOverflow](https://stackoverflow.com/questions/)
 
 [unsplash image](https://unsplash.com/s/photos/skyline?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+
+
+## License
+
+This project is licensed under the terms of the MIT license.
