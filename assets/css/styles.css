@@ -1,0 +1,233 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;f;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Raleway', sans-serif;    
+}
+
+/* background image */
+.background-img {
+  background-image: url(../images/skyline.jpg);
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  background-repeat: no-repeat;
+}
+
+/* wrapper to centralise tiles */
+.wrapper {
+  width: 95%;
+  position: relative;
+  top: 5%;
+  left: 2%;
+}
+
+/* tiles styling */
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.603);
+  padding: 1rem;
+  border-radius: 25px;
+}
+
+/* tall container styling */
+/* search bar */
+.search-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 2rem;
+}
+
+input {
+  color: #ffffff;
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: rgb(0, 0, 0);
+  background-color: transparent;
+  margin: auto;
+  margin-left: 3rem;
+  display: block;
+  width: 80%;
+  padding: 12px 24px;
+  font-size: 1rem;
+  line-height: 18px;
+}
+
+input:focus {
+  border-color: #ffffff;
+}
+
+.search-btn {
+  background-color: transparent;
+  border-style: none;
+  padding: 1.2rem;
+}
+
+.searched-cities:hover,
+.search-btn:hover {
+  background-color: rgba(0, 0, 0, 0.459);
+  color: #ffffff;
+  border-radius: 25px;
+}
+
+.searched-cities{
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+/* current city section */
+.temp-icon-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title-time,
+.title-date,
+.title-city{
+  font-size: 4rem;
+}
+
+.current-icon{
+  height: 6.5rem;
+}
+
+
+.temp-display{
+  font-size: 5rem;
+}
+
+.current-temp-container,
+.current-weather-icon-container {
+  padding: 0 1rem 1rem 0;
+}
+
+/* stats- middle tile section */
+.daily-stats{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  font-size: 1rem;
+}
+
+.uvi-box{
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+/* 5 day forecast section */
+.forecast-card-column {
+  display: display;
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 1rem 0; 
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* media queries */
+/* 576px and below */
+@media (max-width: 576px) { 
+  .temp-display{
+    margin-top: 0;
+  }
+  .title-city{
+    font-size: 3.5rem;
+  }
+  .title-time,
+  .title-date{
+    font-size: 2rem;
+  }
+  .searched-cities,
+  #current-day-time-container,
+  #current-weather-container{
+    text-align: center;
+  }
+}
+
+/* 768px and below */
+@media (max-width: 768px) { 
+  .background-img {
+    background-image: url(../images/skyline.jpg);
+    height: auto;
+  }
+  .searched-cities,
+  #current-day-time-container,
+  #current-weather-container{
+    text-align: center;
+  }
+  .temp-display {
+    font-size: 4rem;
+    padding-top: 1rem;
+  }
+  .temp-icon-wrapper{
+    flex-direction: column;
+  }
+}
+
+/* 768px and above */
+@media (min-width: 768px) {
+  .title-time, .title-date, .title-city {
+    font-size: 2.2rem;
+  }
+  .temp-display {
+    margin-top: 4rem;
+    font-size: 2rem;
+  }
+  .temp-icon-wrapper{
+    flex-direction: row;
+  }
+  .forecast-card-column{
+    padding: 0;
+  }
+}
+
+/* 992px and above */
+@media (min-width: 992px) { 
+  .dark-overlay{
+    padding: 0.5rem;
+  }
+  .title-date{
+    font-size: 2rem;
+  }
+  .title-time,
+  .title-city{
+    font-size: 3rem;
+  }
+  .temp-display {
+    margin-top: 3rem;
+    font-size: 3rem;
+  }
+  .wrapper {
+    top: 10%;
+  }
+  .forecast-card-column{
+    padding: 1rem 0; 
+  }
+  .current-temp-container{
+    margin-bottom: 16px;
+  }
+ }
+
+/* 1200px and above */
+@media (min-width: 1200px) { 
+  .temp-display {
+    font-size: 3rem;
+  }
+  .title-time, .title-date, .title-city {
+    font-size: 2rem;
+  }
+}
+

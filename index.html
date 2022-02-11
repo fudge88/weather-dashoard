@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- bulma.io CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- google fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <!-- internal CSS -->
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <title>Weather Dashboard</title>
+  </head>
+
+  <body>
+    <div class="background-img">
+      <div class="wrapper">
+        <div class="tile is-ancestor main-container">
+          <div class="tile is-vertical is-8">
+            <div class="tile">
+              <div class="tile is-parent is-vertical">
+                <!-- current dat and time -->
+                <article
+                  class="tile is-child notification dark-overlay"
+                  id="current-day-time-container"
+                ></article>
+
+                <!-- current city and weather info -->
+                <article
+                  class="tile is-child notification dark-overlay"
+                  id="current-weather-container"
+                ></article>
+              </div>
+
+              <!-- current weather icon -->
+              <div class="tile is-parent">
+                <article
+                  class="tile is-child notification dark-overlay mobile-format"
+                  id="current-stats-container"
+                ></article>
+              </div>
+            </div>
+
+            <!-- weekly forecast for searched area -->
+            <div class="tile is-parent">
+              <article
+                class="tile is-child notification dark-overlay"
+                id="weather-forecast-card-container"
+              ></article>
+            </div>
+          </div>
+
+          <!-- Tall container -->
+          <div class="tile is-parent tall-container">
+            <article class="tile is-child notification dark-overlay">
+              <div class="content">
+                <!-- search container -->
+                <div class="">
+                  <form class="search-container" id="search-form">
+                    <input
+                      type="text"
+                      placeholder="Search city here"
+                      id="cityInput"/>
+                    <button class="search-btn">
+                      <i class="fas fa-search fa-2x"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+              <!-- historic searches -->
+              <div class="">
+                <ul id="searched-cities-container">
+                </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- moments CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- internal JS file -->
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
