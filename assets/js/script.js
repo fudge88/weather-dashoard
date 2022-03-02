@@ -67,7 +67,6 @@ const getWeatherData = async (cityName) => {
 
 // uvi colour function
 const getUviClass = function (uvi) {
-  console.log(uvi);
   if (uvi >= 0 && uvi < 3) {
     return "has-background-success has-text-black";
   } else if (uvi >= 3 && uvi < 6) {
